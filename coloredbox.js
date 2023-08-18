@@ -46,9 +46,9 @@
 			if ("opacity" in changedProperties) {
 				this.style["opacity"] = changedProperties["opacity"];
 			}
-			if (this._firstConnection){
-        this.redraw();
-            }
+      			if ("widgetText" in changedProperties) {
+      				this.$widgetText = changedProperties["widgetText"];
+      			}
 		}
 		
 		//When the custom widget is removed from the canvas or the analytic application is closed
