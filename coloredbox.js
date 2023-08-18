@@ -17,9 +17,6 @@
 			super(); 
 			let shadowRoot = this.attachShadow({mode: "open"});
 			shadowRoot.appendChild(template.content.cloneNode(true));
-		  this._firstConnection = false;
-      this._tagContainer;
-      this._tagText = "Hello World";
       
       //Adding event handler for click events
 			this.addEventListener("click", event => {
@@ -28,12 +25,6 @@
 			});
 			this._props = {};
 		}
-       
-    //Fired when the widget is added to the html DOM of the page
-    connectedCallback(){
-            this._firstConnection = true;
-            this.redraw();       
-        }
         
 		onCustomWidgetBeforeUpdate(changedProperties) {
 			this._props = { ...this._props, ...changedProperties };
@@ -55,25 +46,6 @@
     onCustomWidgetDestroy(){
     	    
         }
-    //Getters and Setters
-    get widgetText() {
-      return this._tagText;
-        }
-
-    set widgetText(value) {
-    	this._tagText = value;
-        }
-             
-    redraw(){
-   		if (this._tagContainer){
-   			this._tagContainer.parentNode.removeChild(this._tagContainer);
-            }
-
-   		var shadow = window.getSelection(this._shadowRoot);
-   		var theText = document.createTextNode(this._tagText);    
-   		this._tagContainer.appendChild(theText); 
-   		this._shadowRoot.appendChild(this._tagContainer);
-        }  
 	}
  
 	customElements.define("com-sap-sample-coloredbox", ColoredBox);
